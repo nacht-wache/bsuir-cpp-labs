@@ -1,6 +1,5 @@
 #include "Task.h"
-#include <iostream>
-#include <algorithm>
+
 
 std::set<int> Task::id_base;
 

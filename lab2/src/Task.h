@@ -2,9 +2,9 @@
 #define BSUIR_CPP_LABS_LAB2_TASK_H
 
 #include <iostream>
-#include <string>
 #include <set>
 #include <stdexcept>
+#include <string>
 
 
 class Task {
