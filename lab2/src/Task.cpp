@@ -3,21 +3,15 @@
 
 std::set<int> Task::id_base;
 
-void Log() {
-  std::cout << Task::id_base.size() << '\n';
-}
-
 Task::Task() {
   id = Task::id_base.size();
   Task::id_base.insert(Task::id_base.size());
-  Log();
 }
 
 Task::Task(const std::string &name) {
   id = Task::id_base.size();
   Task::id_base.insert(Task::id_base.size());
   this->name = name;
-  Log();
 }
 
 Task::Task(int id, const std::string& name): id(id), name(name) {
@@ -30,5 +24,4 @@ Task::Task(int id, const std::string& name): id(id), name(name) {
                              "Next available is " + std::to_string(Task::id_base.size()) + '.');
   }
   Task::id_base.insert(id);
-  Log();
 }

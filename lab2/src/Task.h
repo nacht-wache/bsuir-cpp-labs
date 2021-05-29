@@ -6,7 +6,6 @@
 #include <stdexcept>
 #include <string>
 
-
 class Task {
 public:
   Task();
@@ -16,7 +15,6 @@ public:
 
   friend class Inspector;
   friend void Print(const Task& task);
-  friend void Log();
 private:
   int id;
   std::string name = "Default";
