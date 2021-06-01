@@ -16,7 +16,7 @@ public:
   Matrix_Complex(const Matrix_Complex& mc) = default;
   Matrix_Complex& operator=(const Matrix_Complex& mc) = default;
 
-  Matrix_Complex(const vector<vector<Complex>>& mc);
+  explicit Matrix_Complex(const vector<vector<Complex>>& mc);
   /*explicit Matrix_Complex(const vector<vector<double>>& mc); // needs review
   Matrix_Complex(const vector<double>& mc, size_t row_size);*/ // needs review
 
