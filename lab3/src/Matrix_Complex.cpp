@@ -150,7 +150,10 @@ void CheckDimensions(const Matrix_Complex& lhs, const Matrix_Complex& rhs) {
 }
 
 void CheckDimensions(const vector<vector<Complex>>& matrix, const Matrix_Complex& mc) {
-  if((matrix.size() != mc.rows()) && (matrix[0].size() != mc.columns())) {
+  auto lhs_d = static_cast<Dimension>(lhs);
+  auto rhs_d = static_cast<Dimension>(rhs);
+
+  if(lhs_d != rhs_d) {
     throw std::domain_error("Operation is impossible: matrices dimensions aren't equal!");
   }
 }
