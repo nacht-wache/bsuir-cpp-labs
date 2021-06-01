@@ -141,19 +141,13 @@ Matrix_Complex::operator Dimension() const{
 //helper functions
 
 void CheckDimensions(const Matrix_Complex& lhs, const Matrix_Complex& rhs) {
-  auto lhs_d = static_cast<Dimension>(lhs);
-  auto rhs_d = static_cast<Dimension>(rhs);
-
-  if(lhs_d != rhs_d) {
+  if(static_cast<Dimension>(lhs) != static_cast<Dimension>(rhs)) {
     throw std::domain_error("Operation is impossible: matrices dimensions aren't equal!");
   }
 }
 
-void CheckDimensions(const vector<vector<Complex>>& matrix, const Matrix_Complex& mc) {
-  auto lhs_d = static_cast<Dimension>(lhs);
-  auto rhs_d = static_cast<Dimension>(rhs);
-
-  if(lhs_d != rhs_d) {
+void CheckDimensions(const vector<vector<Complex>>& lhs, const Matrix_Complex& rhs) {
+  if(static_cast<Dimension>(static_cast<Matrix_Complex>(lhs)) != static_cast<Dimension>(rhs))  {
     throw std::domain_error("Operation is impossible: matrices dimensions aren't equal!");
   }
 }

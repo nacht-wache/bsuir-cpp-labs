@@ -12,8 +12,11 @@ int main() {
     vector<Complex> v1 = {c1, c, c3};
     vector<Complex> v2 = {c1, c3, c};
     vector<vector<Complex>> vmc = {v, v1, v2};
+    vector<vector<Complex>> vmc1 = {v2, v, v1};
     Matrix_Complex mc(vmc);
-    std::cout << mc << '\n';
+    Matrix_Complex mc1(vmc1);
+    //mc+mc1;
+    std::cout << mc << '\n' << mc1 << '\n';
 
     std::cout << "Operator++\n";
     std::cout << ++mc << '\n';
@@ -26,14 +29,14 @@ int main() {
     std::cout << sum << '\n';
 
     std::cout << "Operator-\n";
-    Matrix_Complex diff = mc - mc;
+    Matrix_Complex diff = mc - mc1;
     std::cout << diff << '\n';
 
     std::cout << "Operator==\n";
-    std::cout << (mc == mc) << '\n';
+    std::cout << (mc == mc1) << '\n';
 
     std::cout << "Operator<\n";
-    std::cout << (mc < mc) << '\n';
+    std::cout << (mc < mc1) << '\n';
 
     std::cout << "Operator[]\n";
     std::vector<Complex> vc = mc[0];

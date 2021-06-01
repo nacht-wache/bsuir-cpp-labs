@@ -16,7 +16,7 @@ public:
   Matrix_Complex(const Matrix_Complex& mc) = default;
   Matrix_Complex& operator=(const Matrix_Complex& mc) = default;
 
-  explicit Matrix_Complex(const vector<vector<Complex>>& mc);
+  Matrix_Complex(const vector<vector<Complex>>& mc);
   /*explicit Matrix_Complex(const vector<vector<double>>& mc); // needs review
   Matrix_Complex(const vector<double>& mc, size_t row_size);*/ // needs review
 
@@ -45,6 +45,6 @@ private:
 
 void CheckDimensions(const Matrix_Complex& lhs, const Matrix_Complex& rhs);
 
-void CheckDimensions(const vector<vector<Complex>>& matrix, const Matrix_Complex& mc);
+void CheckDimensions(const vector<vector<Complex>>& lhs, const Matrix_Complex& rhs);
 
 #endif //BSUIR_CPP_LABS_LAB3_SRC_MATRIX_COMPLEX_H
