@@ -17,11 +17,6 @@ public:
   Complex& operator*=(const Complex& c);
   Complex& operator/=(const Complex& c);
 
-  friend Complex operator+(const Complex& lhs, const Complex& rhs);
-  friend Complex operator-(const Complex& lhs, const Complex& rhs);
-  friend Complex operator*(const Complex& lhs, const Complex& rhs);
-  friend Complex operator/(const Complex& lhs, const Complex& rhs);
-
   Complex& operator++();
   Complex& operator--();
   Complex operator+() const;
@@ -40,5 +35,10 @@ private:
   double real;
   double img;
 };
+
+Complex operator+(const Complex& lhs, const Complex& rhs);
+Complex operator-(const Complex& lhs, const Complex& rhs);
+Complex operator*(const Complex& lhs, const Complex& rhs);
+Complex operator/(const Complex& lhs, const Complex& rhs);
 
 #endif //BSUIR_CPP_LABS_LAB4_SRC_COMPLEX_H

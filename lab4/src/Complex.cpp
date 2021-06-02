@@ -37,7 +37,7 @@ Complex operator*(const Complex& lhs, const Complex& rhs) {
 
 Complex operator+(const Complex& lhs, const Complex& rhs) {
   Complex sum = lhs;
-  sum -= rhs;
+  sum += rhs;
   return sum;
 }
 
@@ -49,7 +49,7 @@ Complex operator/(const Complex& lhs, const Complex& rhs) {
 
 Complex operator-(const Complex& lhs, const Complex& rhs) {
   Complex diff = lhs;
-  diff *= rhs;
+  diff -= rhs;
   return diff;
 }
 
