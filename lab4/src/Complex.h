@@ -1,5 +1,5 @@
-#ifndef BSUIR_CPP_LABS_LAB3_SRC_COMPLEX_H
-#define BSUIR_CPP_LABS_LAB3_SRC_COMPLEX_H
+#ifndef BSUIR_CPP_LABS_LAB4_SRC_COMPLEX_H
+#define BSUIR_CPP_LABS_LAB4_SRC_COMPLEX_H
 
 #include <ostream>
 
@@ -41,4 +41,4 @@ private:
   double img;
 };
 
-#endif //BSUIR_CPP_LABS_LAB3_SRC_COMPLEX_H
+#endif //BSUIR_CPP_LABS_LAB4_SRC_COMPLEX_H
