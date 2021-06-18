@@ -11,7 +11,7 @@ public:
   Task();
   ~Task() = default;
   explicit Task(std::string&& name);
-  Task(int id, std::string  name);
+  Task(int id, std::string&& name);
 
   friend class Inspector;
   friend void Print(const Task& task);
