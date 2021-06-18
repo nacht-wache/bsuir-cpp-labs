@@ -1,5 +1,6 @@
 #ifndef BSUIR_CPP_LABS_LAB2_INSPECTOR_H
 #define BSUIR_CPP_LABS_LAB2_INSPECTOR_H
+
 #include "Task.h"
 
 class Inspector {
