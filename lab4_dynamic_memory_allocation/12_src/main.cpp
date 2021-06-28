@@ -1,35 +1,31 @@
 #include <iostream>
-#include <Array3D_Complex.h>
+#include <vector>
+#include <Array.h>
 
 int main() {
-  Array3D_Complex ac;
-  Complex c (1.,2.);
-  ac.reserve(1,1,4);
-  ac.push_back(0,0, c);
-  ac.reserve(0,0,1);
-  std::cout << ac(0,0,0) << '\n';
-  ac.reserve(2,1,3);
-  std::cout << ac(0,0,0) << '\n';
-  ac.push_back(1,0, c);
-  ac.push_back(1,0, c);
-  ac.reserve(2,2,3);
-  std::cout << ac(1,0,0) << '\n';
-  std::cout << ac(1,0,1) << '\n';
-  /*ac.reserve(2,4,5);
+  Array<Array<Array<Complex>>> arr;
+  Array<Array<Complex>> arr_1;
+  Array<Complex> arr_2;
 
-  ac.reserve(4,5,6);
+  for(int i = 0; i < 1; ++i) {
+    arr_2.push_back(Complex());
+  }
+  for(int i = 0; i < 1; ++i) {
+	arr_1.push_back(std::move_if_noexcept(arr_2));
+  }
+  for(int i = 0; i < 1; ++i) {
+	arr.push_back(std::move_if_noexcept(arr_1));
+  }
 
-  ac.print();
-  ac.push_back(0,0, c);
+  Array<Complex> array;
+  for(int i = 0; i < 2; ++i) {
+	array.push_back(Complex());
+  }
 
-  ac.push_back(0,0, c);
-  std::cout << ac(0,0,1) << '\n';
-  ac.push_back(0,0, c);
-  std::cout << ac(0,0,2) << '\n';
-  ac.push_back(0,0, c);
-  std::cout << ac(0,0,3) << '\n';
-  ac.push_back(0,0, c);
-  std::cout << ac(0,0,4) << '\n';*/
-
-
+  Array<Complex> array_copy;
+  for(int i = 0; i < 2; ++i) {
+	array_copy.push_back(Complex());
+  }
+  array = std::move_if_noexcept(array_copy);
+  array_copy.push_back(Complex());
 }

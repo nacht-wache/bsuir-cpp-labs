@@ -29,30 +29,6 @@ Complex& Complex::operator/=(const Complex& c) {
   return *this;
 }
 
-Complex operator*(const Complex& lhs, const Complex& rhs) {
-  Complex mul = lhs;
-  mul *= rhs;
-  return mul;
-}
-
-Complex operator+(const Complex& lhs, const Complex& rhs) {
-  Complex sum = lhs;
-  sum += rhs;
-  return sum;
-}
-
-Complex operator/(const Complex& lhs, const Complex& rhs) {
-  Complex quot = lhs;
-  quot /= rhs;
-  return quot;
-}
-
-Complex operator-(const Complex& lhs, const Complex& rhs) {
-  Complex diff = lhs;
-  diff -= rhs;
-  return diff;
-}
-
 Complex& Complex::operator++() {
   ++real;
   return *this;

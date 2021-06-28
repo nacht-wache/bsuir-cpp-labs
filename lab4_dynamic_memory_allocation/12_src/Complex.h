@@ -4,14 +4,16 @@
 #include <ostream>
 
 class Complex {
-public:
+ public:
   Complex();
   ~Complex() = default;
 
   Complex(const Complex& c) = default;
-  Complex(double real, double img = 0);
+  Complex(Complex&& c) noexcept = default;
+  explicit Complex(double real, double img = 0);
 
   Complex& operator=(const Complex& c) = default;
+  Complex& operator=(Complex&& c) noexcept = default;
   Complex& operator+=(const Complex& c);
   Complex& operator-=(const Complex& c);
   Complex& operator*=(const Complex& c);
@@ -22,7 +24,6 @@ public:
   Complex operator+() const;
   Complex operator-() const;
 
-
   bool operator==(const Complex& c) const;
   bool operator!=(const Complex& c) const;
   bool operator<(const Complex& c) const;
@@ -31,14 +32,9 @@ public:
   [[nodiscard]] double abs() const;
   friend std::ostream& operator<<(std::ostream& os, const Complex& c);
 
-private:
+ private:
   double real;
   double img;
 };
-
-Complex operator+(const Complex& lhs, const Complex& rhs);
-Complex operator-(const Complex& lhs, const Complex& rhs);
-Complex operator*(const Complex& lhs, const Complex& rhs);
-Complex operator/(const Complex& lhs, const Complex& rhs);
 
 #endif //BSUIR_CPP_LABS_LAB4_SRC_COMPLEX_H
