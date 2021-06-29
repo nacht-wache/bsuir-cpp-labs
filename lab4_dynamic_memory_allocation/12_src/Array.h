@@ -12,8 +12,6 @@ class Array {
   size_t cap = 0;
   Alloc alloc;
 
-  void copy_and_swap_idiom();
-
   Array(T* arr, size_t sz, size_t cap)
 	  : arr(arr), sz(sz), cap(cap) {}
 
@@ -74,8 +72,6 @@ Array<T, Alloc>::Array(const Array& rhs)
 	::operator delete(static_cast<void*>(arr));
 	throw;
   }
-
-  std::cout << "Copied array!\n";
 }
 
 template <typename T, typename Alloc>
@@ -85,7 +81,6 @@ Array<T, Alloc>::Array(Array&& rhs) noexcept
   rhs.sz = 0;
   rhs.cap = 0;
 
-  std::cout << "Moved array!\n";
 }
 
 template <typename T, typename Alloc>
@@ -96,7 +91,7 @@ void Array<T, Alloc>::reserve(size_t n) {
   size_t i = 0;
   try {
 	for (; i < sz; ++i) {
-	  std::allocator_traits<Alloc>::construct(alloc, newarr + i, std::move_if_noexcept(arr[i]));
+	  new(newarr + i) T(std::move_if_noexcept(arr[i]));
 	}
   } catch (...) {
 	for (size_t j = 0; j < i; ++j) {
@@ -116,18 +111,13 @@ void Array<T, Alloc>::reserve(size_t n) {
 }
 
 template <typename T, typename Alloc>
-void Array<T, Alloc>::copy_and_swap_idiom() {
-  Array<T, Alloc> copy (std::move_if_noexcept(*this));
-}
-
-template <typename T, typename Alloc>
 Array<T, Alloc>& Array<T, Alloc>::operator=(Array&& rhs) noexcept {
   //Handle self-assignment idiom
   if (this == &rhs) {
 	return *this;
   }
 
-  Array<T, Alloc> copy (std::move_if_noexcept(*this));
+  Array<T, Alloc> copy(std::move_if_noexcept(*this));
   arr = rhs.arr;
   sz = rhs.sz;
   cap = rhs.cap;
@@ -135,7 +125,6 @@ Array<T, Alloc>& Array<T, Alloc>::operator=(Array&& rhs) noexcept {
   rhs.arr = nullptr;
   rhs.sz = 0;
   rhs.cap = 0;
-  std::cout << "Move-assigned array!\n";
 }
 
 template <typename T, typename Alloc>
@@ -145,10 +134,17 @@ Array<T, Alloc>& Array<T, Alloc>::operator=(const Array<T, Alloc>& rhs) {
 	return *this;
   }
 
-  Array<T, Alloc> copy (std::move_if_noexcept(*this));
-  arr = rhs.arr;
+  Array<T, Alloc> copy(std::move_if_noexcept(*this));
+  arr = static_cast<T*>(::operator new(rhs.cap * sizeof(T)));
+  size_t i = 0;
+  try {
+    std::uninitialized_copy(rhs.arr, rhs.arr + sz, arr);
+  } catch (...) {
+	::operator delete(static_cast<void*>(arr));
+	throw;
+  }
+
   sz = rhs.sz;
   cap = rhs.cap;
-  std::cout << "Copy-assigned array!\n";
 }
 #endif //BSUIR_CPP_LABS_LAB4_SRC_ARRAY3D_COMPLEX_H
