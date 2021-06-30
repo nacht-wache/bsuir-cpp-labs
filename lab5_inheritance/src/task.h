@@ -3,41 +3,105 @@
 
 #include <ostream>
 
-struct Animal {
-private:
-  int x = 0;
+class Animal {
+ private:
+  std::string private_animal = "private_animal";
 
-protected:
-  int y = 1;
+ protected:
+  std::string protected_animal = "protected_animal";
 
-public:
-  Animal() {}
-  Animal(int x, int y): x(x), y(y) {}
-  ~Animal() {}
+ public:
+  Animal() = default;
+  ~Animal() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const Animal& a);
+};
+
+class Mammal : virtual public Animal {
+ private:
+  std::string private_mammal = "private_mammal";
+
+ protected:
+  std::string protected_mammal = "protected_mammal";
+
+ public:
+  Mammal() {
+	protected_animal = "protected_animal_mammal";
+  };
+  ~Mammal() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const Mammal& a);
+};
+
+class Lion : public Mammal {
+ private:
+  std::string private_lion = "private_lion";
+
+ protected:
+  std::string protected_lion = "protected_lion";
+
+ public:
+  Lion() {
+	protected_mammal = "protected_mammal_lion";
+	protected_animal = "protected_animal_lion";
+  };
+  ~Lion() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const Lion& a);
 
 };
 
-std::ostream& operator<<(std::ostream& os, const Animal& a);
+class Bird : virtual public Animal {
+ private:
+  std::string private_bird = "private_bird";
 
-struct Mammal: public Animal {
+ protected:
+  std::string protected_bird = "protected_bird";
 
+ public:
+  Bird() {
+	protected_animal = "protected_animal_bird";
+  };
+  ~Bird() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const Bird& a);
 };
 
-struct Lion: public Mammal {
+class Eagle : public Bird {
+ private:
+  std::string private_eagle = "private_eagle";
 
+ protected:
+  std::string protected_eagle = "protected_eagle";
+
+ public:
+  Eagle() {
+	protected_bird = "protected_bird_eagle";
+	protected_animal = "protected_animal_eagle";
+  };
+  ~Eagle() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const Eagle& a);
 };
 
-struct Bird: public Animal {
+class Gryphon : public Lion, public Eagle {
+ private:
+  std::string private_gryphon = "private_gryphon";
 
+ protected:
+  std::string protected_gryphon = "protected_gryphon";
+
+ public:
+  Gryphon() {
+	protected_animal = "protected_animal_gryphon";
+	protected_mammal = "protected_mammal_gryphon";
+	protected_bird = "protected_bird_gryphon";
+	protected_lion = "protected_lion_gryphon";
+	protected_eagle = "protected_eagle_gryphon";
+  };
+  ~Gryphon() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const Gryphon& a);
 };
-
-struct Eagle: public Bird {
-
-};
-
-struct Gryphon: virtual public Lion, virtual public Eagle {
-
-};
-
 
 #endif //BSUIR_CPP_LABS_LAB5_TASK_H
