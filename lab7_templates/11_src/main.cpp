@@ -2,7 +2,7 @@
 #include <specialization.h>
 
 int main() {
-  /*DoubleLinkedList<int> lst = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  DoubleLinkedList<int> lst = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
   for(int i = 0; i < 10; ++i) {
    std::cout << lst[i] << ' ';
   }
@@ -14,7 +14,7 @@ int main() {
   lst.push_back(10);
   oper.print(lst);
   lst.pop_back();
-  oper.print(lst);*/
+  oper.print(lst);
 
   ops<char*> spec_ops;
 
