@@ -13,5 +13,9 @@ int main() {
   } catch (...) {
 	std::cerr << "Terminate!\n";
   }
+
+  std::set_terminate([](){ std::cout << "Unhandled exception" << std::endl; std::abort();});
+  throw 1;
+  std::set_unexpected([](){ std::cout << "Unexpected behavior" << std::endl; std::abort();});
 }
 
