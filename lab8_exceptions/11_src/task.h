@@ -63,44 +63,31 @@ class DoubleLinkedList {
 template <typename T>
 DoubleLinkedList<T>::DoubleLinkedList(const std::initializer_list<T>& lst) {
   if (std::empty(lst)) { return; }
-  if (arr != nullptr) { delete[] arr; }
-
-  auto newarr = static_cast<Node**>(::operator new(2 * cap * sizeof(Node*)));
-  try {
-	std::uninitialized_copy(arr, arr + sz, newarr);
-  } catch (...) {
-	::operator delete(static_cast<void*>(newarr));
-	throw;
-  }
+  reserve(lst.size() * 2);
 
   for (auto item : lst) {
 	if (empty()) {
-	  head = new Node(item);
+	  head = new Node(item, tail, head);
 	  tail = head;
-	  newarr[sz] = head;
+	  arr[sz] = head;
 	  ++sz;
-	  ++cap;
 	} else if (sz == 1) {
-	  Node* node = new Node(item, tail, tail);
+	  Node* node = new Node(item, tail, head);
 	  head->next = node;
+	  tail->next = node;
+	  tail->prev = node;
 	  head = node;
-	  tail->next = head;
-	  tail->prev = head;
-	  newarr[sz] = head;
+	  arr[sz] = head;
 	  ++sz;
-	  ++cap;
 	} else {
-	  Node* node = new Node(item, head, tail);
+	  Node* node = new Node(item, tail, head);
 	  head->next = node;
+	  tail->prev = node;
 	  head = node;
-	  tail->prev = head;
-	  newarr[sz] = head;
+	  arr[sz] = head;
 	  ++sz;
-	  ++cap;
 	}
   }
-
-  arr = newarr;
 }
 
 template <typename T>
